@@ -1,0 +1,21 @@
+services:
+  gama-server:
+    build:
+      context: .
+      dockerfile: ./docker/gama-server/Dockerfile
+    volumes:
+      - ./pig-farm:/pig-farm
+    ports:
+      - "6868:6868"
+    restart: always
+  api:
+    depends_on:
+      - gama-server
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    volumes:
+      - ./pig-farm:/app/pig-farm
+    ports:
+      - "8000:8000"
+    restart: always
