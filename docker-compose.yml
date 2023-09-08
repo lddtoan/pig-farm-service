@@ -1,4 +1,12 @@
 services:
+  proxy:
+    image: "nginx:alpine3.18"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    entrypoint: "nginx -g 'daemon off;'"
+    restart: always
   gama-server:
     build:
       context: .
@@ -11,6 +19,7 @@ services:
   api:
     depends_on:
       - gama-server
+      - proxy
     build:
       context: .
       dockerfile: ./docker/api/Dockerfile
