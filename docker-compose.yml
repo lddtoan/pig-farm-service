@@ -3,8 +3,10 @@ services:
     image: "nginx:alpine3.18"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./certs:/etc/nginx/ssl
     ports:
       - "80:80"
+      - "443:443"
     entrypoint: "nginx -g 'daemon off;'"
     restart: always
   gama-server:
