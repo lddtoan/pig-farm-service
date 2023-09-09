@@ -82,7 +82,7 @@ async def run_simulation(id: str, experiment_name: str, gaml_file_path_on_server
         return
 
     print("initialization successful, running the model")
-    for _ in range(0, 60 * 24 * 5, 10):
+    for _ in range(0, 60 * 24 * 55, 10):
         step_future = asyncio.get_running_loop().create_future()
         await client.step(experiment_id, 10, True)
         gama_response = await step_future
