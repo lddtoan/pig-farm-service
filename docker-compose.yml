@@ -1,6 +1,8 @@
 services:
   proxy:
     image: "nginx:alpine3.18"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "80:80"
     entrypoint: "nginx -g 'daemon off;'"
